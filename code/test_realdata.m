@@ -1,4 +1,6 @@
-
+load('../../data/PCAICA/TDT3matchedContours.mat')
+rearrange_alldata;
+% customize index from 1-11 based on our current dataset
 index = 2;
 mouse_skf = allData_copy(index).skfData;
 [~,size_skf] = size(allData_copy(index).skfData);
@@ -193,7 +195,7 @@ for i = 1:len_1
     end
     
 end
-
+saveas(figure(1),strcat('..\figures\skf-dataset-',num2str(index),'.png'))
 
 figure(2)
 for i = 1:len_2
@@ -212,7 +214,7 @@ for i = 1:len_2
     end
     
 end
-
+saveas(figure(2),strcat('..\figures\sal-dataset-',num2str(index),'.png'))
 
 figure(3)
 for i = 1:len_2
@@ -231,7 +233,7 @@ for i = 1:len_2
     end
     
 end
-
+saveas(figure(3),strcat('..\figures\skf-rough-map-dataset-',num2str(index),'.png'))
 
 % figure(4)
 % i=98;
