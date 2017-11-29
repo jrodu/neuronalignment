@@ -1,0 +1,1 @@
+[assignment,cost] = munkres(rand(100,50));
