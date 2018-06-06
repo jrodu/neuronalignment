@@ -1,7 +1,8 @@
-load('../../data/PCAICA/TDT3matchedContours.mat')
+load('../../data/PCAICA/allData_copy.mat')
 rearrange_alldata;
 % customize index from 1-11 based on our current dataset
-index = 2;
+%%
+index = 4;
 mouse_skf = allData_copy(index).skfData;
 [~,size_skf] = size(allData_copy(index).skfData);
 mouse_skf_coor = cell(size_skf,1);
@@ -71,12 +72,12 @@ test_clusters;
 
 
 
-% figure(1);
-% for i = 1:len_1
-%     plot(ell_data{i}(1,2:end-1),ell_data{i}(2,2:end-1),'LineWidth',2,'Color','k');
-%     hold on
-%     text(ell_data{i}(1,1),ell_data{i}(2,1),num2str(ell_data{i}(1,end)));
-% end
+ %figure(1);
+ %for i = 1:len_1
+ %    plot(ell_data{i}(1,2:end-1),ell_data{i}(2,2:end-1),'LineWidth',2,'Color','k');
+ %    hold on
+ %   text(ell_data{i}(1,1),ell_data{i}(2,1),num2str(ell_data{i}(1,end)));
+ %end
 % % customized
 % plot(ell_data{18}(1,2:end-1),ell_data{18}(2,2:end-1),'LineWidth',2,'Color',[1,0,0]);
 % hold on
@@ -164,19 +165,19 @@ false_find = [];
 for i = 1:length(matching_results_adj_matrix)
     match_1 = matching_results_adj_matrix(i,1);
     match_2 = matching_results_adj_matrix(i,2);
-    if match_1 == match_2 && match_1 <= length(allData(index).index)
+    if match_1 == match_2 && match_1 <= length(allData_copy(index).index)
         correct = correct+1;
         true_find = [true_find;match_1];
     end
 end
 
-true_lost = setdiff(1:length(allData(index).index),true_find)';
+true_lost = setdiff(1:length(allData_copy(index).index),true_find)';
 
-false_lost_skf = length(allData(index).index)+1:length(allData(index).skfData);
-false_lost_sal = length(allData(index).index)+1:length(allData(index).salData);
+false_lost_skf = length(allData_copy(index).index)+1:length(allData_copy(index).skfData);
+false_lost_sal = length(allData_copy(index).index)+1:length(allData_copy(index).salData);
 
 precision = correct/length(matching_results_adj_matrix);
-recall = correct/length(allData(index).index);
+recall = correct/length(allData_copy(index).index);
 
 figure(1)
 for i = 1:len_1
@@ -195,7 +196,7 @@ for i = 1:len_1
     end
     
 end
-saveas(figure(1),strcat('..\figures\skf-dataset-',num2str(index),'.png'))
+%saveas(figure(1),strcat('..\figures\skf-dataset-',num2str(index),'.png'))
 
 figure(2)
 for i = 1:len_2
@@ -214,7 +215,7 @@ for i = 1:len_2
     end
     
 end
-saveas(figure(2),strcat('..\figures\sal-dataset-',num2str(index),'.png'))
+%saveas(figure(2),strcat('..\figures\sal-dataset-',num2str(index),'.png'))
 
 figure(3)
 for i = 1:len_2
@@ -233,7 +234,7 @@ for i = 1:len_2
     end
     
 end
-saveas(figure(3),strcat('..\figures\skf-rough-map-dataset-',num2str(index),'.png'))
+%saveas(figure(3),strcat('..\figures\skf-rough-map-dataset-',num2str(index),'.png'))
 
 % figure(4)
 % i=98;
